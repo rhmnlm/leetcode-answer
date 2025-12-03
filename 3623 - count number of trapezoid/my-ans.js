@@ -85,6 +85,27 @@ var countTrapezoids = function(points) {
         return 0;
     }
 
+    _Y_AxisMapArray = Object.values(_Y_AxisMap);
+    if(_Y_AxisMap[secondLongestXAxis].length > 1){
+        let eligiblePointsCount = _Y_AxisMapArray.reduce((acc, curr) => { 
+            if(curr.length >= 2){
+                return acc + 1;
+            }
+            return acc;
+        }, 0);
+
+        const combinations = permutation(2, eligiblePointsCount);
+        console.log(`${combinations} combinations (selecting 2, 2) found with eligible points count: ${eligiblePointsCount}`);
+
+        return combinations * _Y_AxisMapArray.reduce((acc, curr) => {
+            if(curr.length >= 2){
+                return acc == 0 ? acc + permutation(2, curr.length) : acc * permutation(2, curr.length);
+            }
+            return acc;
+        }, 0);
+    }
+
+
     return permutation(2, _Y_AxisMap[longestXAxisIndex].length) * permutation(2, _Y_AxisMap[secondLongestXAxis].length);
 };
 
