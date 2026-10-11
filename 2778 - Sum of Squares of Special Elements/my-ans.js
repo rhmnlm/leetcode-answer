@@ -1,0 +1,16 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var sumOfSquares = function(nums) {
+    let ans = 0;
+    const n = nums.length;
+
+    for(let i = 1; i <= n; i++){
+        if(n % i == 0){
+            ans += nums[i-1]**2;
+        }
+    }
+
+    return ans;
+};
